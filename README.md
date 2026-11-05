@@ -52,8 +52,9 @@ npm run dev
 ### Вариант B: облачный Supabase
 
 1. Создайте проект на supabase.com.
-2. Примените миграцию: `npx supabase link --project-ref <ref>` и `npx supabase db push`
-   (или выполните `supabase/migrations/*.sql` в SQL Editor).
+2. Примените миграцию: `npx supabase login`, `npx supabase link --project-ref <ref>` и `npx supabase db push --remote`
+   (в Supabase CLI 3 без `--remote` миграция применяется к локальной базе). Или выполните `supabase/migrations/*.sql` в SQL Editor.
+   Проверить: `npx supabase migration list --remote` — в колонке remote должна стоять версия миграции.
 3. **Authentication → Sign In / Providers → Email:** выключите *Allow new users to sign up*.
 4. В `.env.local` укажите URL проекта и **publishable** (anon) ключ.
 5. Секретный ключ положите в `.env.seed.local` (файл в `.gitignore`) и выполните `npm run seed`.
